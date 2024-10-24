@@ -7,6 +7,22 @@ class VideoTranslationClient:
         self.max_retries = max_retries
         self.max_wait_time = max_wait_time
 
+    def set_completion_time(self, completion_time):
+        """
+        Sends a POST request to set the completion time on the server.
+        """
+        try:
+            response = requests.post(
+                f"{self.base_url}/set_completion_time", 
+                json={"completion_time": completion_time}
+            )
+            if response.status_code == 200:
+                print(f"Completion time set to {completion_time} seconds.")
+            else:
+                print(f"Failed to set completion time: {response.text}")
+        except requests.RequestException as e:
+            print(f"Error setting completion time: {e}")
+
     def get_status(self):
         retries = 0
         wait_time = 1  # Initial wait time in seconds
@@ -32,5 +48,6 @@ class VideoTranslationClient:
 
 # Usage
 client = VideoTranslationClient("http://localhost:5000")
+client.set_completion_time(5)
 status = client.get_status()
 print(f"Final Status: {status}")
