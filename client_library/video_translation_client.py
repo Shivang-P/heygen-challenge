@@ -2,7 +2,7 @@ import requests
 import time
 
 class VideoTranslationClient:
-    def __init__(self, base_url, max_retries=10, max_wait_time=60, timeout=10, retry_on_error=False):
+    def __init__(self, base_url, max_retries=10, max_wait_time=60, timeout=20, retry_on_error=False):
         self.base_url = base_url
         self.max_retries = max_retries
         self.max_wait_time = max_wait_time

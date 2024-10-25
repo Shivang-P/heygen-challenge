@@ -9,6 +9,7 @@ def test_integration():
         retry_on_error=False
     )
 
+    client.set_completion_time(5)
     status = client.get_status()
     status_history = client.get_status_history()
 
