@@ -10,8 +10,12 @@ def test_integration():
     )
 
     status = client.get_status()
+    status_history = client.get_status_history()
 
     print(f"Final Status: {status}")
+    print("Status History:")
+    for entry in status_history:
+        print(entry)
 
 if __name__ == '__main__':
     test_integration()

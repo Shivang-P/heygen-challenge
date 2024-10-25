@@ -8,6 +8,7 @@ class VideoTranslationClient:
         self.max_wait_time = max_wait_time
         self.timeout = timeout
         self.retry_on_error = retry_on_error
+        self.status_history = []
 
     def set_completion_time(self, completion_time):
         """
@@ -34,6 +35,8 @@ class VideoTranslationClient:
             try:
                 response = requests.get(f"{self.base_url}/status")
                 result = response.json().get("result")
+
+                self.status_history.append({"timestamp": time.time(), "status": result})
                 
                 if result == "completed":
                     return result
@@ -61,3 +64,6 @@ class VideoTranslationClient:
                 return "error"
 
         return "error"  # If all retries are exhausted, return error
+    
+    def get_status_history(self):
+        return self.status_history
