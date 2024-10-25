@@ -61,9 +61,3 @@ class VideoTranslationClient:
                 return "error"
 
         return "error"  # If all retries are exhausted, return error
-
-# Usage
-client = VideoTranslationClient("http://localhost:5000")
-client.set_completion_time(5)
-status = client.get_status()
-print(f"Final Status: {status}")

@@ -5,7 +5,7 @@ import time
 app = Flask(__name__)
 
 # Simulated completion time
-completion_time = 10  # seconds
+completion_time = 15  # seconds
 start_time = time.time()
 
 @app.route('/status', methods=['GET'])
@@ -26,7 +26,7 @@ def get_status():
 @app.route('/set_completion_time', methods=['POST'])
 def set_completion_time():
     global completion_time, start_time
-    
+
     # Get the completion time from the client request
     data = request.get_json()
     completion_time = data.get('completion_time', 10)
